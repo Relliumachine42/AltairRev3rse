@@ -43,7 +43,7 @@
                             <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/Relliumachine42">The Repo</a>
+                            <a class="nav-link" href="https://github.com/Relliumachine42/AltairRev3rse">The Repo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://schwartz-portfolio.netlify.app/">About</a>
@@ -63,26 +63,33 @@
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-js">
-                        function displayMessage() {
-                            let inputBox = document.getElementById('message');
-                            
-                            let message = inputBox.value;
+                        function getValues() {
+                            let userString = document.getElementById('userString').value;
+                            displayString(reverseString(userString));
+                        }
                         
-                            Swal.fire(
-                                {
-                                    backdrop: false,
-                                    title: 'REV3RSE',
-                                    text: message
-                                }
-                            );
+                        function reverseString(input) {
+                            let revString = '';
+                            for (let i = input.length - 1; i >= 0; i--) {
+                                let letter = input[i];
+                                revString += letter;
+                            }
+                            return revString;
+                        }
+                        
+                        function displayString(output) {
+                            document.getElementById('results').textContent = output;
+                            document.getElementById('alert').classList.remove('invisible');
                         }
                     </code>
                 </pre>
             </div>
             <div class="col-12 col-lg-4">
-                <p>The code is structured in one function</p>
-                <h5>displayMessage</h5>
-                <p>Shows a SweetAlert with the value of the <code>message</code> variable</p>
+                <p>The code is structured in three functions</p>
+                <h5>REV3RSE</h5>
+                <p>The first function <code>getValues()</code> pulls the string entered by the user into the input element with an ID of <code>userString</code> by initializing a variable with the value of that element. Then it gives the third function an argument consisting of the second function given an argument of the variable <code>userString</code>.</p>
+                <p>The second function <code>reverseString()</code> takes one parameter, corresponding to <code>userString</code>. It declares a variable <code>revString</code> with empty quotes so we have something to return. A <code>for()</code> loop counts backwards through the array that is the string provided by the user by starting with an index of one less than the array length. When that index is less than zero, it stops decrementing and exits the loop. Each loop, it assigns the content within the corresponding index of the array to a variable <code>letter</code> and adds that variable to <code>revString</code>. Upon exiting the loop, the function returns <code>revString</code>.</p>
+                <p>The third function <code>displayString()</code> takes the parameter corresponding to the output of the second function as established by the argument in the first function and puts that output as text content into the element with the ID results. Then it removes the class invisible from the element with the ID of alert, allowing the user to see the results.</p>
             </div>
         </div>
     </main>
